@@ -181,9 +181,10 @@ final class Photo {
 			if (!is_uploaded_file($tmp_name)) {
 				if (!@copy($tmp_name, $path)) {
 					Log::error(Database::get(), __METHOD__, __LINE__, 'Could not copy photo to uploads');
-					if ($returnOnError===true) return false;
+					if ($returnOnError === true) return false;
 					Response::error('Could not copy photo to uploads!');
-				} else @unlink($tmp_name);
+				}
+//				} else @unlink($tmp_name);
 			} else {
 				if (!@move_uploaded_file($tmp_name, $path)) {
 					Log::error(Database::get(), __METHOD__, __LINE__, 'Could not move photo to uploads');
